@@ -138,7 +138,7 @@ function handleUserClick(event: MouseEvent, userId: string) {
 											<div
 												v-if="text"
 												class="item-text"
-												:style="{ maxHeight: (layoutOptions?.cardMaxHeight || 600) + 'px' }"
+												:style="{ maxHeight: (layoutOptions?.cardMaxHeight || 200) + 'px' }"
 											>
 												<RenderTemplate
 													:collection="collection"

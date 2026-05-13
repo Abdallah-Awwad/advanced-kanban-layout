@@ -212,7 +212,17 @@ export default defineLayout<LayoutOptions, LayoutQuery>({
 				[title.value, text.value].forEach(template => {
 					if (!template) return;
 					const matches = template.matchAll(/\{\{\s*([\w\.]+)\s*\}\}/g);
-					for (const match of matches) fieldsToFetch.add(match[1]);
+					for (const match of matches) {
+						const fieldPath = match[1];
+						fieldsToFetch.add(fieldPath);
+
+						if (!fieldPath.includes('.')) {
+							const fieldMeta = fieldsInCollection.value.find(f => f.field === fieldPath);
+							if (fieldMeta?.meta?.relation || fieldMeta?.schema?.foreign_key_table) {
+								fieldsToFetch.add(`${fieldPath}.*`);
+							}
+						}
+					}
 				});
 
 				const params: any = {

@@ -8,6 +8,15 @@
 		"directus-extension",
 		"directus-extension-layout"
 	],
+	"homepage": "https://github.com/Abdallah-Awwad/advanced-kanban-layout",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Abdallah-Awwad/advanced-kanban-layout"
+	},
+	"author": {
+		"name": "Abdallah Awwad",
+		"email": "abdallahhawwad@gmail.com"
+	},
 	"license": "MIT",
 	"type": "module",
 	"files": [

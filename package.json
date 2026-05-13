@@ -2,7 +2,7 @@
 	"name": "advanced-kanban-layout",
 	"description": "Advanced Kanban Layout features dynamic template-based cards, customizable sorting, flexible vertical growth, and relational grouping.",
 	"icon": "extension",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"keywords": [
 		"directus",
 		"directus-extension",

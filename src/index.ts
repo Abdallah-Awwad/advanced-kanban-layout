@@ -80,7 +80,10 @@ export default defineLayout<LayoutOptions, LayoutQuery>({
 				text: all.filter((f) => f.type === 'string' || f.type === 'text'),
 				date: all.filter((f) => ['date', 'time', 'dateTime', 'timestamp'].includes(f.type)),
 				tags: all.filter((f) => f.type === 'json' || f.type === 'csv'),
-				user: all.filter((f) => f.field.includes('user') || f.meta?.special?.some((s: string) => s.includes('user'))),
+				user: all.filter((f) =>
+					f.meta?.relation?.related_collection === 'directus_users' ||
+					f.schema?.foreign_key_table === 'directus_users'
+				),
 				file: all.filter((f) => f.type === 'uuid' || f.meta?.special?.some((s: string) => s.includes('file'))),
 			};
 		});

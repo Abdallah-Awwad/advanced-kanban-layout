@@ -203,7 +203,7 @@ function handleUserClick(event: MouseEvent, userId: string) {
 	flex: 1;
 	overflow-x: auto;
 	overflow-y: hidden;
-	padding: 1rem;
+	padding: 0 1rem;
 	gap: 1.25rem;
 	align-items: stretch;
 }
@@ -338,8 +338,24 @@ function handleUserClick(event: MouseEvent, userId: string) {
 
 }
 
-.render-template{
+.render-template {
 	white-space: normal !important;
+}
+
+.item-title :deep(img),
+.item-text :deep(img),
+.item-title :deep(.v-image),
+.item-text :deep(.v-image),
+.item-title :deep(.display-image),
+.item-text :deep(.display-image) {
+	max-width: 100%;
+	height: 24px !important;
+	width: 24px !important;
+	max-height: 24px;
+	object-fit: cover;
+	border-radius: 50%;
+	vertical-align: middle;
+	display: inline-block;
 }
 
 .item-footer {

@@ -11,6 +11,7 @@ export type LayoutOptions = {
 	sortField: string;
 	sortDirection: 'asc' | 'desc';
 	cardMaxHeight?: number;
+	columnWidth?: number;
 };
 
 export type LayoutQuery = {

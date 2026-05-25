@@ -83,11 +83,12 @@ function handleUserClick(event: MouseEvent, userId: string) {
 				item-key="id"
 				draggable=".group-wrapper"
 				:disabled="reorderGroupsDisabled"
+				:animation="150"
 				class="groups-scroll-container"
 				@change="changeGroupSort"
 			>
 				<template #item="{ element: group }">
-					<div class="group-wrapper">
+					<div class="group-wrapper" :style="{ inlineSize: (layoutOptions?.columnWidth ?? 320) + 'px' }">
 						<div class="group">
 							<div class="group-header">
 								<div class="group-title">
@@ -115,6 +116,7 @@ function handleUserClick(event: MouseEvent, userId: string) {
 								item-key="id"
 								draggable=".card-wrapper"
 								:disabled="!canReorderItems || selectMode"
+								:animation="150"
 								class="items-list"
 								@change="change(group, $event)"
 							>
@@ -138,7 +140,7 @@ function handleUserClick(event: MouseEvent, userId: string) {
 											<div
 												v-if="text"
 												class="item-text"
-												:style="{ maxHeight: (layoutOptions?.cardMaxHeight || 200) + 'px' }"
+												:style="{ maxHeight: (layoutOptions?.cardMaxHeight ?? 22) + 'px' }"
 											>
 												<RenderTemplate
 													:collection="collection"

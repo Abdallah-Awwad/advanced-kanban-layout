@@ -16,6 +16,7 @@ const props = withDefaults(
 		sortField?: string | null;
 		sortDirection?: 'asc' | 'desc';
 		cardMaxHeight?: number;
+		columnWidth?: number;
 		ungroupedDisabled: boolean;
 	}>(),
 	{
@@ -28,7 +29,8 @@ const props = withDefaults(
 		showUngrouped: true,
 		sortField: null,
 		sortDirection: 'asc',
-		cardMaxHeight: 300,
+		cardMaxHeight: 22,
+		columnWidth: 320,
 	},
 );
 
@@ -43,6 +45,7 @@ const emit = defineEmits([
 	'update:sortField',
 	'update:sortDirection',
 	'update:cardMaxHeight',
+	'update:columnWidth',
 ]);
 
 const groupFieldSync = useSync(props, 'groupField', emit);
@@ -55,6 +58,7 @@ const showUngroupedSync = useSync(props, 'showUngrouped', emit);
 const sortFieldSync = useSync(props, 'sortField', emit);
 const sortDirectionSync = useSync(props, 'sortDirection', emit);
 const cardMaxHeightSync = useSync(props, 'cardMaxHeight', emit);
+const columnWidthSync = useSync(props, 'columnWidth', emit);
 
 function formatLabel(str: string) {
 	return str
@@ -185,9 +189,20 @@ const sortableFields = computed(() => {
 			<VInput
 				v-model="cardMaxHeightSync"
 				type="number"
-				min="100"
+				min="10"
 				max="1000"
-				placeholder="e.g. 300"
+				placeholder="e.g. 22"
+			/>
+		</div>
+
+		<div class="field">
+			<div class="type-label">Column Width (px)</div>
+			<VInput
+				v-model="columnWidthSync"
+				type="number"
+				min="150"
+				max="1000"
+				placeholder="e.g. 320"
 			/>
 		</div>
 	</VDetail>

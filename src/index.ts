@@ -45,7 +45,8 @@ export default defineLayout<LayoutOptions, LayoutQuery>({
 		const showUngrouped = createViewOption<boolean>('showUngrouped', true);
 		const sortField = createViewOption<string | null>('sortField', null);
 		const sortDirection = createViewOption<'asc' | 'desc'>('sortDirection', 'asc');
-		const cardMaxHeight = createViewOption<number>('cardMaxHeight', 300);
+		const cardMaxHeight = createViewOption<number>('cardMaxHeight', 22);
+		const columnWidth = createViewOption<number>('columnWidth', 320);
 
 		const primaryKeyField = computed(() => {
 			return fieldsInCollection.value.find((f) => f.schema?.is_primary_key) || fieldsInCollection.value[0];
@@ -253,11 +254,30 @@ export default defineLayout<LayoutOptions, LayoutQuery>({
 			const itemId = event.added.element.id;
 			const newGroupId = group.id;
 
+			const pkField = primaryKeyField.value?.field;
+			if (!pkField) return;
+
+			const itemIndex = items.value.findIndex((item) => item[pkField] === itemId);
+			if (itemIndex === -1) return;
+
+			const originalValue = items.value[itemIndex][groupField.value];
+
+			// Apply optimistic update
+			if (typeof originalValue === 'object' && originalValue !== null) {
+				items.value[itemIndex][groupField.value] = { ...originalValue, id: newGroupId };
+			} else {
+				items.value[itemIndex][groupField.value] = newGroupId;
+			}
+
 			try {
 				await api.patch(`/items/${collection.value}/${itemId}`, { [groupField.value]: newGroupId });
 				await refresh();
 			} catch (err) {
 				console.error('[Kanban] Error updating item group:', err);
+				// Rollback optimistic update
+				if (itemIndex !== -1 && items.value[itemIndex]) {
+					items.value[itemIndex][groupField.value] = originalValue;
+				}
 			}
 		}
 
@@ -279,10 +299,10 @@ export default defineLayout<LayoutOptions, LayoutQuery>({
 		watch(collection, async () => { await loadFields(); await refresh(); }, { immediate: true });
 		watch(groupField, () => { loadRelationalGroups(); refresh(); });
 		watch(groupTitle, () => { loadRelationalGroups(); });
-		watch([filter, search, layoutQuery, title, text, userField, sortField, sortDirection, cardMaxHeight], () => refresh());
+		watch([filter, search, layoutQuery, title, text, userField, sortField, sortDirection, cardMaxHeight, columnWidth], () => refresh());
 
 		return {
-			groupedItems, groupField, groupTitle, title, text, dateField, userField, showUngrouped, sortField, sortDirection, cardMaxHeight, isRelational, relatedCollection, items, loading, error,
+			groupedItems, groupField, groupTitle, title, text, dateField, userField, showUngrouped, sortField, sortDirection, cardMaxHeight, columnWidth, isRelational, relatedCollection, items, loading, error,
 			totalCount, totalPages, page: computed(() => layoutQuery.value?.page || 1),
 			itemCount: computed(() => items.value.length),
 			showingCount: computed(() => String(totalCount.value)),

@@ -1,6 +1,6 @@
 import { useSync, defineLayout, useApi } from '@directus/extensions-sdk';
 import * as vue from 'vue';
-import { defineComponent, openBlock, createBlock, Transition, withCtx, createElementBlock, toDisplayString, createCommentVNode, computed, resolveComponent, resolveDirective, renderSlot, createTextVNode, createVNode, unref, createElementVNode, normalizeClass, normalizeStyle, Fragment, renderList, withDirectives, isRef, toRefs, ref, watch } from 'vue';
+import { defineComponent, openBlock, createBlock, Transition, withCtx, createElementBlock, toDisplayString, createCommentVNode, computed, resolveComponent, resolveDirective, renderSlot, createTextVNode, createVNode, unref, createElementVNode, normalizeStyle, normalizeClass, Fragment, renderList, withDirectives, isRef, toRefs, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 
@@ -8966,38 +8966,37 @@ const _hoisted_2$1 = {
   key: 2,
   class: "kanban-board"
 };
-const _hoisted_3$1 = { class: "group-wrapper" };
-const _hoisted_4$1 = { class: "group" };
-const _hoisted_5$1 = { class: "group-header" };
-const _hoisted_6$1 = { class: "group-title" };
-const _hoisted_7$1 = {
+const _hoisted_3$1 = { class: "group" };
+const _hoisted_4$1 = { class: "group-header" };
+const _hoisted_5$1 = { class: "group-title" };
+const _hoisted_6$1 = {
   key: 0,
   class: "title-text subdued"
 };
-const _hoisted_8$1 = {
+const _hoisted_7$1 = {
   key: 2,
   class: "title-text"
 };
-const _hoisted_9$1 = { class: "count-badge" };
-const _hoisted_10$1 = { class: "card-wrapper" };
-const _hoisted_11 = ["onClick"];
-const _hoisted_12 = { class: "item-title" };
-const _hoisted_13 = {
+const _hoisted_8$1 = { class: "count-badge" };
+const _hoisted_9$1 = { class: "card-wrapper" };
+const _hoisted_10$1 = ["onClick"];
+const _hoisted_11$1 = { class: "item-title" };
+const _hoisted_12 = {
   key: 1,
   class: "subdued"
 };
-const _hoisted_14 = { class: "item-footer" };
-const _hoisted_15 = {
+const _hoisted_13 = { class: "item-footer" };
+const _hoisted_14 = {
   key: 0,
   class: "item-date"
 };
-const _hoisted_16 = { key: 1 };
-const _hoisted_17 = {
+const _hoisted_15 = { key: 1 };
+const _hoisted_16 = {
   key: 2,
   class: "item-avatars"
 };
-const _hoisted_18 = { key: 1 };
-const _hoisted_19 = {
+const _hoisted_17 = { key: 1 };
+const _hoisted_18 = {
   key: 0,
   class: "avatar-more"
 };
@@ -9090,151 +9089,162 @@ var _sfc_main$1 = /* @__PURE__ */ defineComponent({
             "item-key": "id",
             draggable: ".group-wrapper",
             disabled: reorderGroupsDisabled.value,
+            animation: 150,
             class: "groups-scroll-container",
             onChange: __props.changeGroupSort
           }, {
             item: withCtx(({ element: group }) => [
-              createElementVNode("div", _hoisted_3$1, [
-                createElementVNode("div", _hoisted_4$1, [
-                  createElementVNode("div", _hoisted_5$1, [
-                    createElementVNode("div", _hoisted_6$1, [
-                      group.id === null ? (openBlock(), createElementBlock(
-                        "span",
-                        _hoisted_7$1,
-                        toDisplayString(unref(t)("layouts.kanban.no_group")),
-                        1
-                        /* TEXT */
-                      )) : __props.groupTitle && __props.isRelational && __props.relatedCollection && group.raw ? (openBlock(), createBlock(_component_RenderTemplate, {
-                        key: 1,
-                        collection: __props.relatedCollection,
-                        template: __props.groupTitle,
-                        item: group.raw,
-                        class: "title-text"
-                      }, null, 8, ["collection", "template", "item"])) : (openBlock(), createElementBlock(
-                        "span",
-                        _hoisted_8$1,
-                        toDisplayString(group.title),
-                        1
-                        /* TEXT */
-                      )),
-                      createElementVNode(
-                        "span",
-                        _hoisted_9$1,
-                        toDisplayString(group.items.length),
-                        1
-                        /* TEXT */
-                      )
-                    ])
-                  ]),
-                  createVNode(unref(Draggable), {
-                    "model-value": group.items,
-                    group: "items",
-                    "item-key": "id",
-                    draggable: ".card-wrapper",
-                    disabled: !__props.canReorderItems || __props.selectMode,
-                    class: "items-list",
-                    onChange: ($event) => __props.change(group, $event)
-                  }, {
-                    item: withCtx(({ element }) => [
-                      createElementVNode("div", _hoisted_10$1, [
-                        createElementVNode("div", {
-                          class: normalizeClass(["item-card", { selected: __props.selection.includes(element.id) }]),
-                          onClick: ($event) => __props.onClick({ item: element, event: $event })
-                        }, [
-                          createElementVNode("div", _hoisted_12, [
-                            __props.title ? (openBlock(), createBlock(_component_RenderTemplate, {
-                              key: 0,
-                              collection: __props.collection,
-                              template: __props.title,
-                              item: element.item
-                            }, null, 8, ["collection", "template", "item"])) : (openBlock(), createElementBlock(
-                              "span",
-                              _hoisted_13,
-                              "No Title (" + toDisplayString(element.id) + ")",
-                              1
-                              /* TEXT */
-                            ))
-                          ]),
-                          __props.text ? (openBlock(), createElementBlock(
-                            "div",
-                            {
-                              key: 0,
-                              class: "item-text",
-                              style: normalizeStyle({ maxHeight: (__props.layoutOptions?.cardMaxHeight || 200) + "px" })
-                            },
-                            [
-                              createVNode(_component_RenderTemplate, {
-                                collection: __props.collection,
-                                template: __props.text,
-                                item: element.item
-                              }, null, 8, ["collection", "template", "item"])
-                            ],
-                            4
-                            /* STYLE */
-                          )) : createCommentVNode("v-if", true),
-                          createElementVNode("div", _hoisted_14, [
-                            element.date ? (openBlock(), createElementBlock("div", _hoisted_15, [
-                              createVNode(_component_VIcon, {
-                                name: "event",
-                                size: "12"
-                              }),
-                              createElementVNode(
-                                "span",
-                                null,
-                                toDisplayString(formatDate(element.date)),
-                                1
-                                /* TEXT */
-                              )
-                            ])) : (openBlock(), createElementBlock("div", _hoisted_16)),
-                            element.users && element.users.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_17, [
-                              (openBlock(true), createElementBlock(
-                                Fragment,
-                                null,
-                                renderList(element.users.slice(0, 3), (user) => {
-                                  return withDirectives((openBlock(), createBlock(_component_VAvatar, {
-                                    key: user.id,
-                                    "x-small": "",
-                                    class: "avatar",
-                                    onClick: ($event) => handleUserClick($event, user.id)
-                                  }, {
-                                    default: withCtx(() => [
-                                      user.avatar?.id ? (openBlock(), createBlock(_component_VImage, {
-                                        key: 0,
-                                        src: getAvatarUrl(user.avatar.id)
-                                      }, null, 8, ["src"])) : (openBlock(), createElementBlock(
-                                        "span",
-                                        _hoisted_18,
-                                        toDisplayString((user.first_name || "?")[0]),
-                                        1
-                                        /* TEXT */
-                                      ))
-                                    ]),
-                                    _: 2
-                                    /* DYNAMIC */
-                                  }, 1032, ["onClick"])), [
-                                    [_directive_tooltip, `${user.first_name || ""} ${user.last_name || ""}`]
-                                  ]);
-                                }),
-                                128
-                                /* KEYED_FRAGMENT */
-                              )),
-                              element.users.length > 3 ? (openBlock(), createElementBlock(
-                                "span",
-                                _hoisted_19,
-                                " +" + toDisplayString(element.users.length - 3),
-                                1
-                                /* TEXT */
-                              )) : createCommentVNode("v-if", true)
-                            ])) : createCommentVNode("v-if", true)
-                          ])
-                        ], 10, _hoisted_11)
+              createElementVNode(
+                "div",
+                {
+                  class: "group-wrapper",
+                  style: normalizeStyle({ inlineSize: (__props.layoutOptions?.columnWidth ?? 320) + "px" })
+                },
+                [
+                  createElementVNode("div", _hoisted_3$1, [
+                    createElementVNode("div", _hoisted_4$1, [
+                      createElementVNode("div", _hoisted_5$1, [
+                        group.id === null ? (openBlock(), createElementBlock(
+                          "span",
+                          _hoisted_6$1,
+                          toDisplayString(unref(t)("layouts.kanban.no_group")),
+                          1
+                          /* TEXT */
+                        )) : __props.groupTitle && __props.isRelational && __props.relatedCollection && group.raw ? (openBlock(), createBlock(_component_RenderTemplate, {
+                          key: 1,
+                          collection: __props.relatedCollection,
+                          template: __props.groupTitle,
+                          item: group.raw,
+                          class: "title-text"
+                        }, null, 8, ["collection", "template", "item"])) : (openBlock(), createElementBlock(
+                          "span",
+                          _hoisted_7$1,
+                          toDisplayString(group.title),
+                          1
+                          /* TEXT */
+                        )),
+                        createElementVNode(
+                          "span",
+                          _hoisted_8$1,
+                          toDisplayString(group.items.length),
+                          1
+                          /* TEXT */
+                        )
                       ])
                     ]),
-                    _: 1
-                    /* STABLE */
-                  }, 8, ["model-value", "disabled", "onChange"])
-                ])
-              ])
+                    createVNode(unref(Draggable), {
+                      "model-value": group.items,
+                      group: "items",
+                      "item-key": "id",
+                      draggable: ".card-wrapper",
+                      disabled: !__props.canReorderItems || __props.selectMode,
+                      animation: 150,
+                      class: "items-list",
+                      onChange: ($event) => __props.change(group, $event)
+                    }, {
+                      item: withCtx(({ element }) => [
+                        createElementVNode("div", _hoisted_9$1, [
+                          createElementVNode("div", {
+                            class: normalizeClass(["item-card", { selected: __props.selection.includes(element.id) }]),
+                            onClick: ($event) => __props.onClick({ item: element, event: $event })
+                          }, [
+                            createElementVNode("div", _hoisted_11$1, [
+                              __props.title ? (openBlock(), createBlock(_component_RenderTemplate, {
+                                key: 0,
+                                collection: __props.collection,
+                                template: __props.title,
+                                item: element.item
+                              }, null, 8, ["collection", "template", "item"])) : (openBlock(), createElementBlock(
+                                "span",
+                                _hoisted_12,
+                                "No Title (" + toDisplayString(element.id) + ")",
+                                1
+                                /* TEXT */
+                              ))
+                            ]),
+                            __props.text ? (openBlock(), createElementBlock(
+                              "div",
+                              {
+                                key: 0,
+                                class: "item-text",
+                                style: normalizeStyle({ maxHeight: (__props.layoutOptions?.cardMaxHeight ?? 22) + "px" })
+                              },
+                              [
+                                createVNode(_component_RenderTemplate, {
+                                  collection: __props.collection,
+                                  template: __props.text,
+                                  item: element.item
+                                }, null, 8, ["collection", "template", "item"])
+                              ],
+                              4
+                              /* STYLE */
+                            )) : createCommentVNode("v-if", true),
+                            createElementVNode("div", _hoisted_13, [
+                              element.date ? (openBlock(), createElementBlock("div", _hoisted_14, [
+                                createVNode(_component_VIcon, {
+                                  name: "event",
+                                  size: "12"
+                                }),
+                                createElementVNode(
+                                  "span",
+                                  null,
+                                  toDisplayString(formatDate(element.date)),
+                                  1
+                                  /* TEXT */
+                                )
+                              ])) : (openBlock(), createElementBlock("div", _hoisted_15)),
+                              element.users && element.users.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_16, [
+                                (openBlock(true), createElementBlock(
+                                  Fragment,
+                                  null,
+                                  renderList(element.users.slice(0, 3), (user) => {
+                                    return withDirectives((openBlock(), createBlock(_component_VAvatar, {
+                                      key: user.id,
+                                      "x-small": "",
+                                      class: "avatar",
+                                      onClick: ($event) => handleUserClick($event, user.id)
+                                    }, {
+                                      default: withCtx(() => [
+                                        user.avatar?.id ? (openBlock(), createBlock(_component_VImage, {
+                                          key: 0,
+                                          src: getAvatarUrl(user.avatar.id)
+                                        }, null, 8, ["src"])) : (openBlock(), createElementBlock(
+                                          "span",
+                                          _hoisted_17,
+                                          toDisplayString((user.first_name || "?")[0]),
+                                          1
+                                          /* TEXT */
+                                        ))
+                                      ]),
+                                      _: 2
+                                      /* DYNAMIC */
+                                    }, 1032, ["onClick"])), [
+                                      [_directive_tooltip, `${user.first_name || ""} ${user.last_name || ""}`]
+                                    ]);
+                                  }),
+                                  128
+                                  /* KEYED_FRAGMENT */
+                                )),
+                                element.users.length > 3 ? (openBlock(), createElementBlock(
+                                  "span",
+                                  _hoisted_18,
+                                  " +" + toDisplayString(element.users.length - 3),
+                                  1
+                                  /* TEXT */
+                                )) : createCommentVNode("v-if", true)
+                              ])) : createCommentVNode("v-if", true)
+                            ])
+                          ], 10, _hoisted_10$1)
+                        ])
+                      ]),
+                      _: 1
+                      /* STABLE */
+                    }, 8, ["model-value", "disabled", "onChange"])
+                  ])
+                ],
+                4
+                /* STYLE */
+              )
             ]),
             _: 1
             /* STABLE */
@@ -9245,10 +9255,10 @@ var _sfc_main$1 = /* @__PURE__ */ defineComponent({
   }
 });
 
-var css$1 = ".kanban-layout[data-v-6108285b] {\n  height: calc(100vh - var(--header-bar-height) - 100px);\n  min-height: 400px;\n  background-color: var(--theme--background);\n  overflow: hidden;\n}\n\n.kanban-board[data-v-6108285b] {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n}\n\n.groups-scroll-container[data-v-6108285b] {\n  display: flex;\n  flex: 1;\n  overflow-x: auto;\n  overflow-y: hidden;\n  padding: 0 1rem;\n  gap: 1.25rem;\n  align-items: stretch;\n}\n\n.group-wrapper[data-v-6108285b] {\n  inline-size: 20rem;\n  flex-shrink: 0;\n  block-size: 100%;\n  display: flex;\n  flex-direction: column;\n}\n\n.group[data-v-6108285b] {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  background-color: var(--theme--background-normal);\n  border: var(--theme--border-width) solid var(--theme--border-color);\n  border-radius: var(--theme--border-radius);\n  overflow: hidden;\n}\n\n.group-header[data-v-6108285b] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.875rem 1rem;\n  font-weight: 700;\n  background-color: var(--theme--background);\n  border-bottom: var(--theme--border-width) solid var(--theme--border-color);\n  flex-shrink: 0;\n}\n\n.group-title[data-v-6108285b] {\n  display: flex;\n  align-items: center;\n  gap: 0.625rem;\n  overflow: hidden;\n}\n.group-title .title-text[data-v-6108285b] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  color: var(--theme--foreground);\n  font-size: 0.9rem;\n  font-weight: 700;\n}\n.group-title .title-text.subdued[data-v-6108285b] {\n  color: var(--theme--foreground-subdued);\n  font-weight: 400;\n  font-style: italic;\n}\n\n.count-badge[data-v-6108285b] {\n  font-size: 0.7rem;\n  background-color: var(--theme--background-accent);\n  color: var(--theme--foreground-accent);\n  padding: 0.125rem 0.5rem;\n  border-radius: 1rem;\n  min-width: 1.5rem;\n  text-align: center;\n}\n\n.items-list[data-v-6108285b] {\n  flex: 1;\n  overflow-y: auto;\n  padding: 0.75rem;\n  display: flex;\n  flex-direction: column;\n  gap: 0.75rem;\n  min-height: 100px;\n}\n\n.card-wrapper[data-v-6108285b] {\n  flex-shrink: 0;\n}\n\n.item-card[data-v-6108285b] {\n  padding: 1rem;\n  background-color: var(--theme--background);\n  border-radius: var(--theme--border-radius);\n  border: var(--theme--border-width) solid var(--theme--border-color);\n  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);\n  cursor: pointer;\n  transition: all 0.15s ease-in-out;\n}\n.item-card[data-v-6108285b]:hover {\n  border-color: var(--theme--primary);\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  transform: translateY(-1px);\n}\n.item-card.selected[data-v-6108285b] {\n  outline: 2px solid var(--theme--primary);\n  background-color: var(--theme--primary-subdued);\n}\n\n.item-title[data-v-6108285b] {\n  font-weight: 700;\n  margin-block-end: 0.5rem;\n  color: var(--theme--primary);\n  line-height: 1.4;\n  font-size: 0.95rem;\n  font-size: 0.95rem;\n  white-space: normal !important;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n}\n.item-title .subdued[data-v-6108285b] {\n  color: var(--theme--foreground-subdued);\n  font-weight: 400;\n  font-style: italic;\n}\n\n.item-text[data-v-6108285b] {\n  font-size: 0.85rem;\n  color: var(--theme--foreground);\n  line-height: 1.5;\n  margin-bottom: 0.5rem;\n  word-break: break-word;\n  white-space: pre-wrap;\n  overflow: hidden;\n  position: relative;\n}\n\n.render-template[data-v-6108285b] {\n  white-space: normal !important;\n}\n\n.item-title[data-v-6108285b] img,\n.item-text[data-v-6108285b] img,\n.item-title[data-v-6108285b] .v-image,\n.item-text[data-v-6108285b] .v-image,\n.item-title[data-v-6108285b] .display-image,\n.item-text[data-v-6108285b] .display-image {\n  max-width: 100%;\n  height: 24px !important;\n  width: 24px !important;\n  max-height: 24px;\n  object-fit: cover;\n  border-radius: 50%;\n  vertical-align: middle;\n  display: inline-block;\n}\n\n.item-footer[data-v-6108285b] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-block-start: 0.75rem;\n  padding-top: 0.625rem;\n  border-top: 1px solid var(--theme--border-color-subdued);\n}\n\n.item-date[data-v-6108285b] {\n  font-size: 0.75rem;\n  color: var(--theme--foreground-subdued);\n  font-weight: 600;\n  display: flex;\n  align-items: center;\n  gap: 0.25rem;\n}\n\n.item-avatars[data-v-6108285b] {\n  display: flex;\n  flex-direction: row-reverse;\n  align-items: center;\n  gap: -0.5rem;\n}\n.item-avatars .avatar[data-v-6108285b] {\n  border: 2px solid var(--theme--background);\n  margin-inline-start: -0.5rem;\n  transition: transform 0.2s ease;\n  cursor: pointer;\n}\n.item-avatars .avatar[data-v-6108285b]:hover {\n  transform: scale(1.1);\n  z-index: 10;\n}\n.item-avatars .avatar-more[data-v-6108285b] {\n  font-size: 0.7rem;\n  color: var(--theme--foreground-subdued);\n  margin-inline-end: 0.25rem;\n}";
+var css$1 = ".kanban-layout[data-v-641ae3f7] {\n  height: calc(100vh - var(--header-bar-height) - 100px);\n  min-height: 400px;\n  background-color: var(--theme--background);\n  overflow: hidden;\n}\n\n.kanban-board[data-v-641ae3f7] {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n}\n\n.groups-scroll-container[data-v-641ae3f7] {\n  display: flex;\n  flex: 1;\n  overflow-x: auto;\n  overflow-y: hidden;\n  padding: 0 1rem;\n  gap: 1.25rem;\n  align-items: stretch;\n}\n\n.group-wrapper[data-v-641ae3f7] {\n  inline-size: 20rem;\n  flex-shrink: 0;\n  block-size: 100%;\n  display: flex;\n  flex-direction: column;\n}\n\n.group[data-v-641ae3f7] {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  background-color: var(--theme--background-normal);\n  border: var(--theme--border-width) solid var(--theme--border-color);\n  border-radius: var(--theme--border-radius);\n  overflow: hidden;\n}\n\n.group-header[data-v-641ae3f7] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.875rem 1rem;\n  font-weight: 700;\n  background-color: var(--theme--background);\n  border-bottom: var(--theme--border-width) solid var(--theme--border-color);\n  flex-shrink: 0;\n}\n\n.group-title[data-v-641ae3f7] {\n  display: flex;\n  align-items: center;\n  gap: 0.625rem;\n  overflow: hidden;\n}\n.group-title .title-text[data-v-641ae3f7] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  color: var(--theme--foreground);\n  font-size: 0.9rem;\n  font-weight: 700;\n}\n.group-title .title-text.subdued[data-v-641ae3f7] {\n  color: var(--theme--foreground-subdued);\n  font-weight: 400;\n  font-style: italic;\n}\n\n.count-badge[data-v-641ae3f7] {\n  font-size: 0.7rem;\n  background-color: var(--theme--background-accent);\n  color: var(--theme--foreground-accent);\n  padding: 0.125rem 0.5rem;\n  border-radius: 1rem;\n  min-width: 1.5rem;\n  text-align: center;\n}\n\n.items-list[data-v-641ae3f7] {\n  flex: 1;\n  overflow-y: auto;\n  padding: 0.75rem;\n  display: flex;\n  flex-direction: column;\n  gap: 0.75rem;\n  min-height: 100px;\n}\n\n.card-wrapper[data-v-641ae3f7] {\n  flex-shrink: 0;\n}\n\n.item-card[data-v-641ae3f7] {\n  padding: 1rem;\n  background-color: var(--theme--background);\n  border-radius: var(--theme--border-radius);\n  border: var(--theme--border-width) solid var(--theme--border-color);\n  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);\n  cursor: pointer;\n  transition: all 0.15s ease-in-out;\n}\n.item-card[data-v-641ae3f7]:hover {\n  border-color: var(--theme--primary);\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  transform: translateY(-1px);\n}\n.item-card.selected[data-v-641ae3f7] {\n  outline: 2px solid var(--theme--primary);\n  background-color: var(--theme--primary-subdued);\n}\n\n.item-title[data-v-641ae3f7] {\n  font-weight: 700;\n  margin-block-end: 0.5rem;\n  color: var(--theme--primary);\n  line-height: 1.4;\n  font-size: 0.95rem;\n  font-size: 0.95rem;\n  white-space: normal !important;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n}\n.item-title .subdued[data-v-641ae3f7] {\n  color: var(--theme--foreground-subdued);\n  font-weight: 400;\n  font-style: italic;\n}\n\n.item-text[data-v-641ae3f7] {\n  font-size: 0.85rem;\n  color: var(--theme--foreground);\n  line-height: 1.5;\n  margin-bottom: 0.5rem;\n  word-break: break-word;\n  white-space: pre-wrap;\n  overflow: hidden;\n  position: relative;\n}\n\n.render-template[data-v-641ae3f7] {\n  white-space: normal !important;\n}\n\n.item-title[data-v-641ae3f7] img,\n.item-text[data-v-641ae3f7] img,\n.item-title[data-v-641ae3f7] .v-image,\n.item-text[data-v-641ae3f7] .v-image,\n.item-title[data-v-641ae3f7] .display-image,\n.item-text[data-v-641ae3f7] .display-image {\n  max-width: 100%;\n  height: 24px !important;\n  width: 24px !important;\n  max-height: 24px;\n  object-fit: cover;\n  border-radius: 50%;\n  vertical-align: middle;\n  display: inline-block;\n}\n\n.item-footer[data-v-641ae3f7] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-block-start: 0.75rem;\n  padding-top: 0.625rem;\n  border-top: 1px solid var(--theme--border-color-subdued);\n}\n\n.item-date[data-v-641ae3f7] {\n  font-size: 0.75rem;\n  color: var(--theme--foreground-subdued);\n  font-weight: 600;\n  display: flex;\n  align-items: center;\n  gap: 0.25rem;\n}\n\n.item-avatars[data-v-641ae3f7] {\n  display: flex;\n  flex-direction: row-reverse;\n  align-items: center;\n  gap: -0.5rem;\n}\n.item-avatars .avatar[data-v-641ae3f7] {\n  border: 2px solid var(--theme--background);\n  margin-inline-start: -0.5rem;\n  transition: transform 0.2s ease;\n  cursor: pointer;\n}\n.item-avatars .avatar[data-v-641ae3f7]:hover {\n  transform: scale(1.1);\n  z-index: 10;\n}\n.item-avatars .avatar-more[data-v-641ae3f7] {\n  font-size: 0.7rem;\n  color: var(--theme--foreground-subdued);\n  margin-inline-end: 0.25rem;\n}";
 n(css$1,{});
 
-var KanbanLayout = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-6108285b"]]);
+var KanbanLayout = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-641ae3f7"]]);
 
 const _hoisted_1 = { class: "field" };
 const _hoisted_2 = {
@@ -9263,6 +9273,7 @@ const _hoisted_7 = { class: "field checkbox-row" };
 const _hoisted_8 = { class: "field" };
 const _hoisted_9 = { class: "field" };
 const _hoisted_10 = { class: "field" };
+const _hoisted_11 = { class: "field" };
 var _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "options",
   props: {
@@ -9277,7 +9288,8 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
     showUngrouped: { type: Boolean, default: true },
     sortField: { default: null },
     sortDirection: { default: "asc" },
-    cardMaxHeight: { default: 300 },
+    cardMaxHeight: { default: 22 },
+    columnWidth: { default: 320 },
     ungroupedDisabled: { type: Boolean }
   },
   emits: [
@@ -9290,7 +9302,8 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
     "update:showUngrouped",
     "update:sortField",
     "update:sortDirection",
-    "update:cardMaxHeight"
+    "update:cardMaxHeight",
+    "update:columnWidth"
   ],
   setup(__props, { emit: __emit }) {
     const props = __props;
@@ -9305,6 +9318,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
     const sortFieldSync = useSync(props, "sortField", emit);
     const sortDirectionSync = useSync(props, "sortDirection", emit);
     const cardMaxHeightSync = useSync(props, "cardMaxHeight", emit);
+    const columnWidthSync = useSync(props, "columnWidth", emit);
     function formatLabel(str) {
       return str.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
     }
@@ -9342,7 +9356,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
         null,
         [
           createElementVNode("div", _hoisted_1, [
-            _cache[10] || (_cache[10] = createElementVNode(
+            _cache[11] || (_cache[11] = createElementVNode(
               "div",
               { class: "type-label" },
               "Group By",
@@ -9358,7 +9372,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
             }, null, 8, ["modelValue", "items"])
           ]),
           isRelational.value && relatedCollection.value ? (openBlock(), createElementBlock("div", _hoisted_2, [
-            _cache[11] || (_cache[11] = createElementVNode(
+            _cache[12] || (_cache[12] = createElementVNode(
               "div",
               { class: "type-label" },
               "Group Header Template",
@@ -9373,7 +9387,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
             }, null, 8, ["modelValue", "collection"])
           ])) : createCommentVNode("v-if", true),
           createElementVNode("div", _hoisted_3, [
-            _cache[12] || (_cache[12] = createElementVNode(
+            _cache[13] || (_cache[13] = createElementVNode(
               "div",
               { class: "type-label" },
               "Title Template",
@@ -9387,7 +9401,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
             }, null, 8, ["modelValue", "collection"])
           ]),
           createElementVNode("div", _hoisted_4, [
-            _cache[13] || (_cache[13] = createElementVNode(
+            _cache[14] || (_cache[14] = createElementVNode(
               "div",
               { class: "type-label" },
               "Text Template",
@@ -9401,7 +9415,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
             }, null, 8, ["modelValue", "collection"])
           ]),
           createElementVNode("div", _hoisted_5, [
-            _cache[14] || (_cache[14] = createElementVNode(
+            _cache[15] || (_cache[15] = createElementVNode(
               "div",
               { class: "type-label" },
               "Date Field",
@@ -9417,7 +9431,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
             }, null, 8, ["modelValue", "items"])
           ]),
           createElementVNode("div", _hoisted_6, [
-            _cache[15] || (_cache[15] = createElementVNode(
+            _cache[16] || (_cache[16] = createElementVNode(
               "div",
               { class: "type-label" },
               "User Card",
@@ -9433,7 +9447,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
             }, null, 8, ["modelValue", "items"])
           ]),
           createVNode(_component_VDetail, { class: "field advanced-section" }, {
-            title: withCtx(() => [..._cache[16] || (_cache[16] = [
+            title: withCtx(() => [..._cache[17] || (_cache[17] = [
               createTextVNode(
                 "Advanced Settings",
                 -1
@@ -9450,7 +9464,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
                 }, null, 8, ["modelValue", "disabled"])
               ]),
               createElementVNode("div", _hoisted_8, [
-                _cache[17] || (_cache[17] = createElementVNode(
+                _cache[18] || (_cache[18] = createElementVNode(
                   "div",
                   { class: "type-label" },
                   "Sort Items By",
@@ -9466,7 +9480,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
                 }, null, 8, ["modelValue", "items"])
               ]),
               createElementVNode("div", _hoisted_9, [
-                _cache[18] || (_cache[18] = createElementVNode(
+                _cache[19] || (_cache[19] = createElementVNode(
                   "div",
                   { class: "type-label" },
                   "Sort Direction",
@@ -9484,7 +9498,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
                 }, null, 8, ["modelValue", "disabled"])
               ]),
               createElementVNode("div", _hoisted_10, [
-                _cache[19] || (_cache[19] = createElementVNode(
+                _cache[20] || (_cache[20] = createElementVNode(
                   "div",
                   { class: "type-label" },
                   "Card Max Height (px)",
@@ -9495,9 +9509,26 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
                   modelValue: unref(cardMaxHeightSync),
                   "onUpdate:modelValue": _cache[9] || (_cache[9] = ($event) => isRef(cardMaxHeightSync) ? cardMaxHeightSync.value = $event : null),
                   type: "number",
-                  min: "100",
+                  min: "10",
                   max: "1000",
-                  placeholder: "e.g. 300"
+                  placeholder: "e.g. 22"
+                }, null, 8, ["modelValue"])
+              ]),
+              createElementVNode("div", _hoisted_11, [
+                _cache[21] || (_cache[21] = createElementVNode(
+                  "div",
+                  { class: "type-label" },
+                  "Column Width (px)",
+                  -1
+                  /* CACHED */
+                )),
+                createVNode(_component_VInput, {
+                  modelValue: unref(columnWidthSync),
+                  "onUpdate:modelValue": _cache[10] || (_cache[10] = ($event) => isRef(columnWidthSync) ? columnWidthSync.value = $event : null),
+                  type: "number",
+                  min: "150",
+                  max: "1000",
+                  placeholder: "e.g. 320"
                 }, null, 8, ["modelValue"])
               ])
             ]),
@@ -9512,10 +9543,10 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 
-var css = "\n.field[data-v-0c66141e] {\r\n\tmargin-bottom: 1.5rem;\n}\n.type-label[data-v-0c66141e] {\r\n\tfont-size: 0.75rem;\r\n\tfont-weight: 700;\r\n\ttext-transform: uppercase;\r\n\tcolor: var(--theme--foreground-subdued);\r\n\tmargin-bottom: 0.5rem;\n}\n.checkbox-row[data-v-0c66141e] {\r\n\tmargin-top: 1rem;\r\n\tmargin-bottom: 1rem;\n}\n[data-v-0c66141e] .v-detail .title {\r\n\tfont-weight: 700 !important;\r\n\tcolor: var(--theme--primary) !important;\n}\n[data-v-0c66141e] .v-detail .content {\r\n\tpadding-top: 1rem;\n}\r\n";
+var css = "\n.field[data-v-a55aef26] {\r\n\tmargin-bottom: 1.5rem;\n}\n.type-label[data-v-a55aef26] {\r\n\tfont-size: 0.75rem;\r\n\tfont-weight: 700;\r\n\ttext-transform: uppercase;\r\n\tcolor: var(--theme--foreground-subdued);\r\n\tmargin-bottom: 0.5rem;\n}\n.checkbox-row[data-v-a55aef26] {\r\n\tmargin-top: 1rem;\r\n\tmargin-bottom: 1rem;\n}\n[data-v-a55aef26] .v-detail .title {\r\n\tfont-weight: 700 !important;\r\n\tcolor: var(--theme--primary) !important;\n}\n[data-v-a55aef26] .v-detail .content {\r\n\tpadding-top: 1rem;\n}\r\n";
 n(css,{});
 
-var KanbanOptions = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-0c66141e"]]);
+var KanbanOptions = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-a55aef26"]]);
 
 var index = defineLayout({
   id: "advanced-kanban-layout",
@@ -9553,7 +9584,8 @@ var index = defineLayout({
     const showUngrouped = createViewOption("showUngrouped", true);
     const sortField = createViewOption("sortField", null);
     const sortDirection = createViewOption("sortDirection", "asc");
-    const cardMaxHeight = createViewOption("cardMaxHeight", 300);
+    const cardMaxHeight = createViewOption("cardMaxHeight", 22);
+    const columnWidth = createViewOption("columnWidth", 320);
     const primaryKeyField = computed(() => {
       return fieldsInCollection.value.find((f) => f.schema?.is_primary_key) || fieldsInCollection.value[0];
     });
@@ -9731,11 +9763,24 @@ var index = defineLayout({
       if (!event.added || !groupField.value || !collection.value) return;
       const itemId = event.added.element.id;
       const newGroupId = group.id;
+      const pkField = primaryKeyField.value?.field;
+      if (!pkField) return;
+      const itemIndex = items.value.findIndex((item) => item[pkField] === itemId);
+      if (itemIndex === -1) return;
+      const originalValue = items.value[itemIndex][groupField.value];
+      if (typeof originalValue === "object" && originalValue !== null) {
+        items.value[itemIndex][groupField.value] = { ...originalValue, id: newGroupId };
+      } else {
+        items.value[itemIndex][groupField.value] = newGroupId;
+      }
       try {
         await api.patch(`/items/${collection.value}/${itemId}`, { [groupField.value]: newGroupId });
         await refresh();
       } catch (err) {
         console.error("[Kanban] Error updating item group:", err);
+        if (itemIndex !== -1 && items.value[itemIndex]) {
+          items.value[itemIndex][groupField.value] = originalValue;
+        }
       }
     }
     function onClick({ item, event }) {
@@ -9764,7 +9809,7 @@ var index = defineLayout({
     watch(groupTitle, () => {
       loadRelationalGroups();
     });
-    watch([filter, search, layoutQuery, title, text, userField, sortField, sortDirection, cardMaxHeight], () => refresh());
+    watch([filter, search, layoutQuery, title, text, userField, sortField, sortDirection, cardMaxHeight, columnWidth], () => refresh());
     return {
       groupedItems,
       groupField,
@@ -9777,6 +9822,7 @@ var index = defineLayout({
       sortField,
       sortDirection,
       cardMaxHeight,
+      columnWidth,
       isRelational,
       relatedCollection,
       items,

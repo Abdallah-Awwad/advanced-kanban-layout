@@ -31,9 +31,13 @@ Once installed, select **Kanban (Advanced)** from the layout options in any coll
 - **Show Ungrouped**: Toggle whether to show a column for items that don't belong to any group.
 - **Sort Items By**: Choose a field to control the order of cards within each column.
 - **Sort Direction**: Select between Ascending and Descending order.
-- **Card Max Height (px)**: Set the maximum height in pixels before the card text truncates (defaults to 22px).
-- **Column Width (px)**: Set the width of columns on the board in pixels (defaults to 320px).
+- **Card Max Height and Column Width**: Set the maximum height for cards and width for columns in pixels.
+
+### Future Enhancements:
+- [ ] Add support for translations.
 
 ## License
 
 MIT
+
+

@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "advanced-kanban-layout",
   "description": "Advanced Kanban Layout features dynamic template-based cards, customizable sorting, flexible vertical growth, and relational grouping.",
   "icon": "extension",
@@ -45,3 +46,51 @@
     "vuedraggable": "^4.1.0"
   }
 }
+=======
+	"name": "advanced-kanban-layout",
+	"description": "Advanced Kanban Layout features dynamic template-based cards, customizable sorting, flexible vertical growth, and relational grouping.",
+	"icon": "extension",
+	"version": "1.0.5",
+	"keywords": [
+		"directus",
+		"directus-extension",
+		"directus-extension-layout"
+	],
+	"homepage": "https://github.com/Abdallah-Awwad/advanced-kanban-layout",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Abdallah-Awwad/advanced-kanban-layout"
+	},
+	"author": {
+		"name": "Abdallah Awwad",
+		"email": "abdallahhawwad@gmail.com"
+	},
+	"license": "MIT",
+	"type": "module",
+	"files": [
+		"dist"
+	],
+	"directus:extension": {
+		"type": "layout",
+		"path": "dist/index.js",
+		"source": "src/index.ts",
+		"host": "^10.10.0 || ^11.0.0"
+	},
+	"scripts": {
+		"build": "directus-extension build",
+		"dev": "directus-extension build -w --no-minify",
+		"link": "directus-extension link",
+		"validate": "directus-extension validate"
+	},
+	"devDependencies": {
+		"@directus/extensions-sdk": "17.1.4",
+		"sass": "^1.99.0",
+		"vue": "^3.5.34"
+	},
+	"dependencies": {
+		"lodash": "^4.18.1",
+		"vue-i18n": "^11.4.2",
+		"vuedraggable": "^4.1.0"
+	}
+}
+>>>>>>> 1fea79140619bd3c8745761cd227cf8cf8fe7e8d

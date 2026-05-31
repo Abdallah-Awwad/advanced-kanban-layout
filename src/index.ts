@@ -47,6 +47,7 @@ export default defineLayout<LayoutOptions, LayoutQuery>({
 		const sortDirection = createViewOption<'asc' | 'desc'>('sortDirection', 'asc');
 		const cardMaxHeight = createViewOption<number>('cardMaxHeight', 22);
 		const columnWidth = createViewOption<number>('columnWidth', 320);
+		const itemsLimit = createViewOption<number>('itemsLimit', 1000);
 
 		const primaryKeyField = computed(() => {
 			return fieldsInCollection.value.find((f) => f.schema?.is_primary_key) || fieldsInCollection.value[0];
@@ -226,8 +227,9 @@ export default defineLayout<LayoutOptions, LayoutQuery>({
 					}
 				});
 
+				const limit = itemsLimit.value || 1000;
 				const params: any = {
-					limit: layoutQuery.value?.limit || 250,
+					limit: limit,
 					page: layoutQuery.value?.page || 1,
 					fields: Array.from(fieldsToFetch),
 					meta: 'filter_count',
@@ -240,7 +242,7 @@ export default defineLayout<LayoutOptions, LayoutQuery>({
 				const response = await api.get(`/items/${collection.value}`, { params });
 				items.value = response.data.data || [];
 				totalCount.value = response.data.meta?.filter_count ?? items.value.length;
-				totalPages.value = Math.ceil(totalCount.value / (layoutQuery.value?.limit || 250));
+				totalPages.value = Math.ceil(totalCount.value / limit);
 			} catch (err) {
 				error.value = err;
 				console.error('[Kanban] Error refreshing items:', err);
@@ -299,13 +301,23 @@ export default defineLayout<LayoutOptions, LayoutQuery>({
 		watch(collection, async () => { await loadFields(); await refresh(); }, { immediate: true });
 		watch(groupField, () => { loadRelationalGroups(); refresh(); });
 		watch(groupTitle, () => { loadRelationalGroups(); });
-		watch([filter, search, layoutQuery, title, text, userField, sortField, sortDirection, cardMaxHeight, columnWidth], () => refresh());
+		watch([filter, search, layoutQuery, title, text, userField, sortField, sortDirection, cardMaxHeight, columnWidth, itemsLimit], () => refresh());
+
+		const fetchedCount = computed(() => items.value.length);
+		const limitExceeded = computed(() => fetchedCount.value < totalCount.value);
 
 		return {
-			groupedItems, groupField, groupTitle, title, text, dateField, userField, showUngrouped, sortField, sortDirection, cardMaxHeight, columnWidth, isRelational, relatedCollection, items, loading, error,
+			groupedItems, groupField, groupTitle, title, text, dateField, userField, showUngrouped, sortField, sortDirection, cardMaxHeight, columnWidth, itemsLimit, isRelational, relatedCollection, items, loading, error,
 			totalCount, totalPages, page: computed(() => layoutQuery.value?.page || 1),
-			itemCount: computed(() => items.value.length),
-			showingCount: computed(() => String(totalCount.value)),
+			itemCount: fetchedCount,
+			showingCount: computed(() => {
+				if (limitExceeded.value) {
+					return `${fetchedCount.value} of ${totalCount.value} ${totalCount.value === 1 ? 'item' : 'items'}`;
+				}
+				return `${totalCount.value} ${totalCount.value === 1 ? 'item' : 'items'}`;
+			}),
+
+			limitExceeded,
 			refresh, change, onClick, onUserClick,
 			fieldGroups, primaryKeyField,
 			canReorderGroups: ref(true),

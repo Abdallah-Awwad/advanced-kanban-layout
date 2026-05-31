@@ -17,6 +17,7 @@ const props = withDefaults(
 		sortDirection?: 'asc' | 'desc';
 		cardMaxHeight?: number;
 		columnWidth?: number;
+		itemsLimit?: number;
 		ungroupedDisabled: boolean;
 	}>(),
 	{
@@ -26,11 +27,12 @@ const props = withDefaults(
 		text: null,
 		dateField: null,
 		userField: null,
-		showUngrouped: true,
+		showUngrouped: false,
 		sortField: null,
 		sortDirection: 'asc',
 		cardMaxHeight: 22,
 		columnWidth: 320,
+		itemsLimit: 1000,
 	},
 );
 
@@ -46,6 +48,7 @@ const emit = defineEmits([
 	'update:sortDirection',
 	'update:cardMaxHeight',
 	'update:columnWidth',
+	'update:itemsLimit',
 ]);
 
 const groupFieldSync = useSync(props, 'groupField', emit);
@@ -59,6 +62,7 @@ const sortFieldSync = useSync(props, 'sortField', emit);
 const sortDirectionSync = useSync(props, 'sortDirection', emit);
 const cardMaxHeightSync = useSync(props, 'cardMaxHeight', emit);
 const columnWidthSync = useSync(props, 'columnWidth', emit);
+const itemsLimitSync = useSync(props, 'itemsLimit', emit);
 
 function formatLabel(str: string) {
 	return str
@@ -205,6 +209,18 @@ const sortableFields = computed(() => {
 				placeholder="e.g. 320"
 			/>
 		</div>
+
+		<div class="field">
+			<div class="type-label">Items Limit</div>
+			<VInput
+				v-model="itemsLimitSync"
+				type="number"
+				min="1"
+				max="100000"
+				placeholder="e.g. 1000"
+			/>
+			<div class="field-hint">Maximum number of items to fetch. Higher values may impact performance.</div>
+		</div>
 	</VDetail>
 </template>
 
@@ -233,5 +249,12 @@ const sortableFields = computed(() => {
 
 :deep(.v-detail .content) {
 	padding-top: 1rem;
+}
+
+.field-hint {
+	font-size: 0.7rem;
+	color: var(--theme--foreground-subdued);
+	margin-top: 0.25rem;
+	line-height: 1.4;
 }
 </style>

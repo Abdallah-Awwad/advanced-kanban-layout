@@ -32,6 +32,7 @@ Once installed, select **Kanban (Advanced)** from the layout options in any coll
 - **Sort Items By**: Choose a field to control the order of cards within each column.
 - **Sort Direction**: Select between Ascending and Descending order.
 - **Card Max Height and Column Width**: Set the maximum height for cards and width for columns in pixels.
+- **Items Limit**: Set the maximum number of items to fetch. Default is 1000, but you can increase it as needed.
 
 ### Future Enhancements:
 - [ ] Add support for translations.

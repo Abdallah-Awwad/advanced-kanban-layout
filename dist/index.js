@@ -35,7 +35,7 @@ var _sfc_main$2 = /* @__PURE__ */ defineComponent({
 
 var e=[],t=[];function n(n,r){if(n&&"undefined"!=typeof document){var a,s=true===r.prepend?"prepend":"append",d=true===r.singleTag,i="string"==typeof r.container?document.querySelector(r.container):document.getElementsByTagName("head")[0];if(d){var u=e.indexOf(i);-1===u&&(u=e.push(i)-1,t[u]={}),a=t[u]&&t[u][s]?t[u][s]:t[u][s]=c();}else a=c();65279===n.charCodeAt(0)&&(n=n.substring(1)),a.styleSheet?a.styleSheet.cssText+=n:a.appendChild(document.createTextNode(n));}function c(){var e=document.createElement("style");if(e.setAttribute("type","text/css"),r.attributes)for(var t=Object.keys(r.attributes),n=0;n<t.length;n++)e.setAttribute(t[n],r.attributes[t[n]]);var a="prepend"===s?"afterbegin":"beforeend";return i.insertAdjacentElement(a,e),e}}
 
-var css$3 = "\n.item-count[data-v-488b3a3e] {\n\tposition: relative;\n\tdisplay: none;\n\tcolor: var(--theme--foreground-subdued);\n\twhite-space: nowrap;\n}\n@media (min-width: 640px) {\n.item-count[data-v-488b3a3e] {\n\t\tdisplay: inline;\n}\n}\n.fade-enter-active[data-v-488b3a3e],\n.fade-leave-active[data-v-488b3a3e] {\n\ttransition: opacity var(--medium) var(--transition);\n}\n.fade-enter-from[data-v-488b3a3e],\n.fade-leave-to[data-v-488b3a3e] {\n\topacity: 0;\n}\n";
+var css$3 = "\n.item-count[data-v-00fdcbe9] {\n\tposition: relative;\n\tdisplay: none;\n\tcolor: var(--theme--foreground-subdued);\n\twhite-space: nowrap;\n\tmargin: 0 8px;\n}\n@media (min-width: 640px) {\n.item-count[data-v-00fdcbe9] {\n\t\tdisplay: inline;\n}\n}\n.fade-enter-active[data-v-00fdcbe9],\n.fade-leave-active[data-v-00fdcbe9] {\n\ttransition: opacity var(--medium) var(--transition);\n}\n.fade-enter-from[data-v-00fdcbe9],\n.fade-leave-to[data-v-00fdcbe9] {\n\topacity: 0;\n}\n";
 n(css$3,{});
 
 var _export_sfc = (sfc, props) => {
@@ -46,7 +46,7 @@ var _export_sfc = (sfc, props) => {
   return target;
 };
 
-var KanbanActions = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-488b3a3e"]]);
+var KanbanActions = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-00fdcbe9"]]);
 
 function getDefaultExportFromCjs (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
@@ -8981,7 +8981,7 @@ const _hoisted_8$1 = { class: "count-badge" };
 const _hoisted_9$1 = { class: "card-wrapper" };
 const _hoisted_10$1 = ["onClick"];
 const _hoisted_11$1 = { class: "item-title" };
-const _hoisted_12 = {
+const _hoisted_12$1 = {
   key: 1,
   class: "subdued"
 };
@@ -9026,7 +9026,8 @@ var _sfc_main$1 = /* @__PURE__ */ defineComponent({
     text: {},
     groupTitle: {},
     isRelational: { type: Boolean },
-    relatedCollection: {}
+    relatedCollection: {},
+    limitExceeded: { type: Boolean, default: false }
   },
   emits: ["update:selection", "update:limit", "update:size", "update:sort", "update:width"],
   setup(__props) {
@@ -9069,8 +9070,23 @@ var _sfc_main$1 = /* @__PURE__ */ defineComponent({
           error: __props.error,
           reset: __props.resetPresetAndRefresh
         }, void 0, true) : (openBlock(), createElementBlock("div", _hoisted_2$1, [
-          __props.groupedItems.length === 0 && !__props.loading ? (openBlock(), createBlock(_component_VNotice, {
+          __props.limitExceeded ? (openBlock(), createBlock(_component_VNotice, {
             key: 0,
+            type: "warning",
+            class: "limit-warning"
+          }, {
+            default: withCtx(() => [
+              createTextVNode(
+                " Showing " + toDisplayString(__props.itemCount) + " of " + toDisplayString(__props.totalCount) + " items. Increase the limit in layout options or apply filters to see all items. ",
+                1
+                /* TEXT */
+              )
+            ]),
+            _: 1
+            /* STABLE */
+          })) : createCommentVNode("v-if", true),
+          __props.groupedItems.length === 0 && !__props.loading ? (openBlock(), createBlock(_component_VNotice, {
+            key: 1,
             type: "info"
           }, {
             default: withCtx(() => [..._cache[0] || (_cache[0] = [
@@ -9156,7 +9172,7 @@ var _sfc_main$1 = /* @__PURE__ */ defineComponent({
                                 item: element.item
                               }, null, 8, ["collection", "template", "item"])) : (openBlock(), createElementBlock(
                                 "span",
-                                _hoisted_12,
+                                _hoisted_12$1,
                                 "No Title (" + toDisplayString(element.id) + ")",
                                 1
                                 /* TEXT */
@@ -9255,10 +9271,10 @@ var _sfc_main$1 = /* @__PURE__ */ defineComponent({
   }
 });
 
-var css$1 = ".kanban-layout[data-v-641ae3f7] {\n  height: calc(100vh - var(--header-bar-height) - 100px);\n  min-height: 400px;\n  background-color: var(--theme--background);\n  overflow: hidden;\n}\n\n.kanban-board[data-v-641ae3f7] {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n}\n\n.groups-scroll-container[data-v-641ae3f7] {\n  display: flex;\n  flex: 1;\n  overflow-x: auto;\n  overflow-y: hidden;\n  padding: 0 1rem;\n  gap: 1.25rem;\n  align-items: stretch;\n}\n\n.group-wrapper[data-v-641ae3f7] {\n  inline-size: 20rem;\n  flex-shrink: 0;\n  block-size: 100%;\n  display: flex;\n  flex-direction: column;\n}\n\n.group[data-v-641ae3f7] {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  background-color: var(--theme--background-normal);\n  border: var(--theme--border-width) solid var(--theme--border-color);\n  border-radius: var(--theme--border-radius);\n  overflow: hidden;\n}\n\n.group-header[data-v-641ae3f7] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.875rem 1rem;\n  font-weight: 700;\n  background-color: var(--theme--background);\n  border-bottom: var(--theme--border-width) solid var(--theme--border-color);\n  flex-shrink: 0;\n}\n\n.group-title[data-v-641ae3f7] {\n  display: flex;\n  align-items: center;\n  gap: 0.625rem;\n  overflow: hidden;\n}\n.group-title .title-text[data-v-641ae3f7] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  color: var(--theme--foreground);\n  font-size: 0.9rem;\n  font-weight: 700;\n}\n.group-title .title-text.subdued[data-v-641ae3f7] {\n  color: var(--theme--foreground-subdued);\n  font-weight: 400;\n  font-style: italic;\n}\n\n.count-badge[data-v-641ae3f7] {\n  font-size: 0.7rem;\n  background-color: var(--theme--background-accent);\n  color: var(--theme--foreground-accent);\n  padding: 0.125rem 0.5rem;\n  border-radius: 1rem;\n  min-width: 1.5rem;\n  text-align: center;\n}\n\n.items-list[data-v-641ae3f7] {\n  flex: 1;\n  overflow-y: auto;\n  padding: 0.75rem;\n  display: flex;\n  flex-direction: column;\n  gap: 0.75rem;\n  min-height: 100px;\n}\n\n.card-wrapper[data-v-641ae3f7] {\n  flex-shrink: 0;\n}\n\n.item-card[data-v-641ae3f7] {\n  padding: 1rem;\n  background-color: var(--theme--background);\n  border-radius: var(--theme--border-radius);\n  border: var(--theme--border-width) solid var(--theme--border-color);\n  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);\n  cursor: pointer;\n  transition: all 0.15s ease-in-out;\n}\n.item-card[data-v-641ae3f7]:hover {\n  border-color: var(--theme--primary);\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  transform: translateY(-1px);\n}\n.item-card.selected[data-v-641ae3f7] {\n  outline: 2px solid var(--theme--primary);\n  background-color: var(--theme--primary-subdued);\n}\n\n.item-title[data-v-641ae3f7] {\n  font-weight: 700;\n  margin-block-end: 0.5rem;\n  color: var(--theme--primary);\n  line-height: 1.4;\n  font-size: 0.95rem;\n  font-size: 0.95rem;\n  white-space: normal !important;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n}\n.item-title .subdued[data-v-641ae3f7] {\n  color: var(--theme--foreground-subdued);\n  font-weight: 400;\n  font-style: italic;\n}\n\n.item-text[data-v-641ae3f7] {\n  font-size: 0.85rem;\n  color: var(--theme--foreground);\n  line-height: 1.5;\n  margin-bottom: 0.5rem;\n  word-break: break-word;\n  white-space: pre-wrap;\n  overflow: hidden;\n  position: relative;\n}\n\n.render-template[data-v-641ae3f7] {\n  white-space: normal !important;\n}\n\n.item-title[data-v-641ae3f7] img,\n.item-text[data-v-641ae3f7] img,\n.item-title[data-v-641ae3f7] .v-image,\n.item-text[data-v-641ae3f7] .v-image,\n.item-title[data-v-641ae3f7] .display-image,\n.item-text[data-v-641ae3f7] .display-image {\n  max-width: 100%;\n  height: 24px !important;\n  width: 24px !important;\n  max-height: 24px;\n  object-fit: cover;\n  border-radius: 50%;\n  vertical-align: middle;\n  display: inline-block;\n}\n\n.item-footer[data-v-641ae3f7] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-block-start: 0.75rem;\n  padding-top: 0.625rem;\n  border-top: 1px solid var(--theme--border-color-subdued);\n}\n\n.item-date[data-v-641ae3f7] {\n  font-size: 0.75rem;\n  color: var(--theme--foreground-subdued);\n  font-weight: 600;\n  display: flex;\n  align-items: center;\n  gap: 0.25rem;\n}\n\n.item-avatars[data-v-641ae3f7] {\n  display: flex;\n  flex-direction: row-reverse;\n  align-items: center;\n  gap: -0.5rem;\n}\n.item-avatars .avatar[data-v-641ae3f7] {\n  border: 2px solid var(--theme--background);\n  margin-inline-start: -0.5rem;\n  transition: transform 0.2s ease;\n  cursor: pointer;\n}\n.item-avatars .avatar[data-v-641ae3f7]:hover {\n  transform: scale(1.1);\n  z-index: 10;\n}\n.item-avatars .avatar-more[data-v-641ae3f7] {\n  font-size: 0.7rem;\n  color: var(--theme--foreground-subdued);\n  margin-inline-end: 0.25rem;\n}";
+var css$1 = ".kanban-layout[data-v-afcefcb7] {\n  height: calc(100vh - var(--header-bar-height) - 100px);\n  min-height: 400px;\n  background-color: var(--theme--background);\n  overflow: hidden;\n}\n\n.kanban-board[data-v-afcefcb7] {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n}\n\n.limit-warning[data-v-afcefcb7] {\n  margin: 0.5rem 1rem;\n  flex-shrink: 0;\n}\n\n.groups-scroll-container[data-v-afcefcb7] {\n  display: flex;\n  flex: 1;\n  overflow-x: auto;\n  overflow-y: hidden;\n  padding: 0 1rem;\n  gap: 1.25rem;\n  align-items: stretch;\n}\n\n.group-wrapper[data-v-afcefcb7] {\n  inline-size: 20rem;\n  flex-shrink: 0;\n  block-size: 100%;\n  display: flex;\n  flex-direction: column;\n}\n\n.group[data-v-afcefcb7] {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  background-color: var(--theme--background-normal);\n  border: var(--theme--border-width) solid var(--theme--border-color);\n  border-radius: var(--theme--border-radius);\n  overflow: hidden;\n}\n\n.group-header[data-v-afcefcb7] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.875rem 1rem;\n  font-weight: 700;\n  background-color: var(--theme--background);\n  border-bottom: var(--theme--border-width) solid var(--theme--border-color);\n  flex-shrink: 0;\n}\n\n.group-title[data-v-afcefcb7] {\n  display: flex;\n  align-items: center;\n  gap: 0.625rem;\n  overflow: hidden;\n}\n.group-title .title-text[data-v-afcefcb7] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  color: var(--theme--foreground);\n  font-size: 0.9rem;\n  font-weight: 700;\n}\n.group-title .title-text.subdued[data-v-afcefcb7] {\n  color: var(--theme--foreground-subdued);\n  font-weight: 400;\n  font-style: italic;\n}\n\n.count-badge[data-v-afcefcb7] {\n  font-size: 0.7rem;\n  background-color: var(--theme--background-accent);\n  color: var(--theme--foreground-accent);\n  padding: 0.125rem 0.5rem;\n  border-radius: 1rem;\n  min-width: 1.5rem;\n  text-align: center;\n}\n\n.items-list[data-v-afcefcb7] {\n  flex: 1;\n  overflow-y: auto;\n  padding: 0.75rem;\n  display: flex;\n  flex-direction: column;\n  gap: 0.75rem;\n  min-height: 100px;\n}\n\n.card-wrapper[data-v-afcefcb7] {\n  flex-shrink: 0;\n}\n\n.item-card[data-v-afcefcb7] {\n  padding: 1rem;\n  background-color: var(--theme--background);\n  border-radius: var(--theme--border-radius);\n  border: var(--theme--border-width) solid var(--theme--border-color);\n  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);\n  cursor: pointer;\n  transition: all 0.15s ease-in-out;\n}\n.item-card[data-v-afcefcb7]:hover {\n  border-color: var(--theme--primary);\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  transform: translateY(-1px);\n}\n.item-card.selected[data-v-afcefcb7] {\n  outline: 2px solid var(--theme--primary);\n  background-color: var(--theme--primary-subdued);\n}\n\n.item-title[data-v-afcefcb7] {\n  font-weight: 700;\n  margin-block-end: 0.5rem;\n  color: var(--theme--primary);\n  line-height: 1.4;\n  font-size: 0.95rem;\n  font-size: 0.95rem;\n  white-space: normal !important;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n}\n.item-title .subdued[data-v-afcefcb7] {\n  color: var(--theme--foreground-subdued);\n  font-weight: 400;\n  font-style: italic;\n}\n\n.item-text[data-v-afcefcb7] {\n  font-size: 0.85rem;\n  color: var(--theme--foreground);\n  line-height: 1.5;\n  margin-bottom: 0.5rem;\n  word-break: break-word;\n  white-space: pre-wrap;\n  overflow: hidden;\n  position: relative;\n}\n\n.render-template[data-v-afcefcb7] {\n  white-space: normal !important;\n}\n\n.item-title[data-v-afcefcb7] img,\n.item-text[data-v-afcefcb7] img,\n.item-title[data-v-afcefcb7] .v-image,\n.item-text[data-v-afcefcb7] .v-image,\n.item-title[data-v-afcefcb7] .display-image,\n.item-text[data-v-afcefcb7] .display-image {\n  max-width: 100%;\n  height: 24px !important;\n  width: 24px !important;\n  max-height: 24px;\n  object-fit: cover;\n  border-radius: 50%;\n  vertical-align: middle;\n  display: inline-block;\n}\n\n.item-footer[data-v-afcefcb7] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-block-start: 0.75rem;\n  padding-top: 0.625rem;\n  border-top: 1px solid var(--theme--border-color-subdued);\n}\n\n.item-date[data-v-afcefcb7] {\n  font-size: 0.75rem;\n  color: var(--theme--foreground-subdued);\n  font-weight: 600;\n  display: flex;\n  align-items: center;\n  gap: 0.25rem;\n}\n\n.item-avatars[data-v-afcefcb7] {\n  display: flex;\n  flex-direction: row-reverse;\n  align-items: center;\n  gap: -0.5rem;\n}\n.item-avatars .avatar[data-v-afcefcb7] {\n  border: 2px solid var(--theme--background);\n  margin-inline-start: -0.5rem;\n  transition: transform 0.2s ease;\n  cursor: pointer;\n}\n.item-avatars .avatar[data-v-afcefcb7]:hover {\n  transform: scale(1.1);\n  z-index: 10;\n}\n.item-avatars .avatar-more[data-v-afcefcb7] {\n  font-size: 0.7rem;\n  color: var(--theme--foreground-subdued);\n  margin-inline-end: 0.25rem;\n}";
 n(css$1,{});
 
-var KanbanLayout = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-641ae3f7"]]);
+var KanbanLayout = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-afcefcb7"]]);
 
 const _hoisted_1 = { class: "field" };
 const _hoisted_2 = {
@@ -9274,6 +9290,7 @@ const _hoisted_8 = { class: "field" };
 const _hoisted_9 = { class: "field" };
 const _hoisted_10 = { class: "field" };
 const _hoisted_11 = { class: "field" };
+const _hoisted_12 = { class: "field" };
 var _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "options",
   props: {
@@ -9285,11 +9302,12 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
     text: { default: null },
     dateField: { default: null },
     userField: { default: null },
-    showUngrouped: { type: Boolean, default: true },
+    showUngrouped: { type: Boolean, default: false },
     sortField: { default: null },
     sortDirection: { default: "asc" },
     cardMaxHeight: { default: 22 },
     columnWidth: { default: 320 },
+    itemsLimit: { default: 1e3 },
     ungroupedDisabled: { type: Boolean }
   },
   emits: [
@@ -9303,7 +9321,8 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
     "update:sortField",
     "update:sortDirection",
     "update:cardMaxHeight",
-    "update:columnWidth"
+    "update:columnWidth",
+    "update:itemsLimit"
   ],
   setup(__props, { emit: __emit }) {
     const props = __props;
@@ -9319,6 +9338,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
     const sortDirectionSync = useSync(props, "sortDirection", emit);
     const cardMaxHeightSync = useSync(props, "cardMaxHeight", emit);
     const columnWidthSync = useSync(props, "columnWidth", emit);
+    const itemsLimitSync = useSync(props, "itemsLimit", emit);
     function formatLabel(str) {
       return str.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
     }
@@ -9356,7 +9376,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
         null,
         [
           createElementVNode("div", _hoisted_1, [
-            _cache[11] || (_cache[11] = createElementVNode(
+            _cache[12] || (_cache[12] = createElementVNode(
               "div",
               { class: "type-label" },
               "Group By",
@@ -9372,7 +9392,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
             }, null, 8, ["modelValue", "items"])
           ]),
           isRelational.value && relatedCollection.value ? (openBlock(), createElementBlock("div", _hoisted_2, [
-            _cache[12] || (_cache[12] = createElementVNode(
+            _cache[13] || (_cache[13] = createElementVNode(
               "div",
               { class: "type-label" },
               "Group Header Template",
@@ -9387,7 +9407,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
             }, null, 8, ["modelValue", "collection"])
           ])) : createCommentVNode("v-if", true),
           createElementVNode("div", _hoisted_3, [
-            _cache[13] || (_cache[13] = createElementVNode(
+            _cache[14] || (_cache[14] = createElementVNode(
               "div",
               { class: "type-label" },
               "Title Template",
@@ -9401,7 +9421,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
             }, null, 8, ["modelValue", "collection"])
           ]),
           createElementVNode("div", _hoisted_4, [
-            _cache[14] || (_cache[14] = createElementVNode(
+            _cache[15] || (_cache[15] = createElementVNode(
               "div",
               { class: "type-label" },
               "Text Template",
@@ -9415,7 +9435,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
             }, null, 8, ["modelValue", "collection"])
           ]),
           createElementVNode("div", _hoisted_5, [
-            _cache[15] || (_cache[15] = createElementVNode(
+            _cache[16] || (_cache[16] = createElementVNode(
               "div",
               { class: "type-label" },
               "Date Field",
@@ -9431,7 +9451,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
             }, null, 8, ["modelValue", "items"])
           ]),
           createElementVNode("div", _hoisted_6, [
-            _cache[16] || (_cache[16] = createElementVNode(
+            _cache[17] || (_cache[17] = createElementVNode(
               "div",
               { class: "type-label" },
               "User Card",
@@ -9447,7 +9467,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
             }, null, 8, ["modelValue", "items"])
           ]),
           createVNode(_component_VDetail, { class: "field advanced-section" }, {
-            title: withCtx(() => [..._cache[17] || (_cache[17] = [
+            title: withCtx(() => [..._cache[18] || (_cache[18] = [
               createTextVNode(
                 "Advanced Settings",
                 -1
@@ -9464,7 +9484,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
                 }, null, 8, ["modelValue", "disabled"])
               ]),
               createElementVNode("div", _hoisted_8, [
-                _cache[18] || (_cache[18] = createElementVNode(
+                _cache[19] || (_cache[19] = createElementVNode(
                   "div",
                   { class: "type-label" },
                   "Sort Items By",
@@ -9480,7 +9500,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
                 }, null, 8, ["modelValue", "items"])
               ]),
               createElementVNode("div", _hoisted_9, [
-                _cache[19] || (_cache[19] = createElementVNode(
+                _cache[20] || (_cache[20] = createElementVNode(
                   "div",
                   { class: "type-label" },
                   "Sort Direction",
@@ -9498,7 +9518,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
                 }, null, 8, ["modelValue", "disabled"])
               ]),
               createElementVNode("div", _hoisted_10, [
-                _cache[20] || (_cache[20] = createElementVNode(
+                _cache[21] || (_cache[21] = createElementVNode(
                   "div",
                   { class: "type-label" },
                   "Card Max Height (px)",
@@ -9515,7 +9535,7 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
                 }, null, 8, ["modelValue"])
               ]),
               createElementVNode("div", _hoisted_11, [
-                _cache[21] || (_cache[21] = createElementVNode(
+                _cache[22] || (_cache[22] = createElementVNode(
                   "div",
                   { class: "type-label" },
                   "Column Width (px)",
@@ -9530,6 +9550,30 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
                   max: "1000",
                   placeholder: "e.g. 320"
                 }, null, 8, ["modelValue"])
+              ]),
+              createElementVNode("div", _hoisted_12, [
+                _cache[23] || (_cache[23] = createElementVNode(
+                  "div",
+                  { class: "type-label" },
+                  "Items Limit",
+                  -1
+                  /* CACHED */
+                )),
+                createVNode(_component_VInput, {
+                  modelValue: unref(itemsLimitSync),
+                  "onUpdate:modelValue": _cache[11] || (_cache[11] = ($event) => isRef(itemsLimitSync) ? itemsLimitSync.value = $event : null),
+                  type: "number",
+                  min: "1",
+                  max: "100000",
+                  placeholder: "e.g. 1000"
+                }, null, 8, ["modelValue"]),
+                _cache[24] || (_cache[24] = createElementVNode(
+                  "div",
+                  { class: "field-hint" },
+                  "Maximum number of items to fetch. Higher values may impact performance.",
+                  -1
+                  /* CACHED */
+                ))
               ])
             ]),
             _: 1
@@ -9543,10 +9587,10 @@ var _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 
-var css = "\n.field[data-v-a55aef26] {\r\n\tmargin-bottom: 1.5rem;\n}\n.type-label[data-v-a55aef26] {\r\n\tfont-size: 0.75rem;\r\n\tfont-weight: 700;\r\n\ttext-transform: uppercase;\r\n\tcolor: var(--theme--foreground-subdued);\r\n\tmargin-bottom: 0.5rem;\n}\n.checkbox-row[data-v-a55aef26] {\r\n\tmargin-top: 1rem;\r\n\tmargin-bottom: 1rem;\n}\n[data-v-a55aef26] .v-detail .title {\r\n\tfont-weight: 700 !important;\r\n\tcolor: var(--theme--primary) !important;\n}\n[data-v-a55aef26] .v-detail .content {\r\n\tpadding-top: 1rem;\n}\r\n";
+var css = "\n.field[data-v-f21f9df7] {\r\n\tmargin-bottom: 1.5rem;\n}\n.type-label[data-v-f21f9df7] {\r\n\tfont-size: 0.75rem;\r\n\tfont-weight: 700;\r\n\ttext-transform: uppercase;\r\n\tcolor: var(--theme--foreground-subdued);\r\n\tmargin-bottom: 0.5rem;\n}\n.checkbox-row[data-v-f21f9df7] {\r\n\tmargin-top: 1rem;\r\n\tmargin-bottom: 1rem;\n}\n[data-v-f21f9df7] .v-detail .title {\r\n\tfont-weight: 700 !important;\r\n\tcolor: var(--theme--primary) !important;\n}\n[data-v-f21f9df7] .v-detail .content {\r\n\tpadding-top: 1rem;\n}\n.field-hint[data-v-f21f9df7] {\r\n\tfont-size: 0.7rem;\r\n\tcolor: var(--theme--foreground-subdued);\r\n\tmargin-top: 0.25rem;\r\n\tline-height: 1.4;\n}\r\n";
 n(css,{});
 
-var KanbanOptions = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-a55aef26"]]);
+var KanbanOptions = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-f21f9df7"]]);
 
 var index = defineLayout({
   id: "advanced-kanban-layout",
@@ -9586,6 +9630,7 @@ var index = defineLayout({
     const sortDirection = createViewOption("sortDirection", "asc");
     const cardMaxHeight = createViewOption("cardMaxHeight", 22);
     const columnWidth = createViewOption("columnWidth", 320);
+    const itemsLimit = createViewOption("itemsLimit", 1e3);
     const primaryKeyField = computed(() => {
       return fieldsInCollection.value.find((f) => f.schema?.is_primary_key) || fieldsInCollection.value[0];
     });
@@ -9739,8 +9784,9 @@ var index = defineLayout({
             }
           }
         });
+        const limit = itemsLimit.value || 1e3;
         const params = {
-          limit: layoutQuery.value?.limit || 250,
+          limit,
           page: layoutQuery.value?.page || 1,
           fields: Array.from(fieldsToFetch),
           meta: "filter_count"
@@ -9751,7 +9797,7 @@ var index = defineLayout({
         const response = await api.get(`/items/${collection.value}`, { params });
         items.value = response.data.data || [];
         totalCount.value = response.data.meta?.filter_count ?? items.value.length;
-        totalPages.value = Math.ceil(totalCount.value / (layoutQuery.value?.limit || 250));
+        totalPages.value = Math.ceil(totalCount.value / limit);
       } catch (err) {
         error.value = err;
         console.error("[Kanban] Error refreshing items:", err);
@@ -9809,7 +9855,9 @@ var index = defineLayout({
     watch(groupTitle, () => {
       loadRelationalGroups();
     });
-    watch([filter, search, layoutQuery, title, text, userField, sortField, sortDirection, cardMaxHeight, columnWidth], () => refresh());
+    watch([filter, search, layoutQuery, title, text, userField, sortField, sortDirection, cardMaxHeight, columnWidth, itemsLimit], () => refresh());
+    const fetchedCount = computed(() => items.value.length);
+    const limitExceeded = computed(() => fetchedCount.value < totalCount.value);
     return {
       groupedItems,
       groupField,
@@ -9823,6 +9871,7 @@ var index = defineLayout({
       sortDirection,
       cardMaxHeight,
       columnWidth,
+      itemsLimit,
       isRelational,
       relatedCollection,
       items,
@@ -9831,8 +9880,14 @@ var index = defineLayout({
       totalCount,
       totalPages,
       page: computed(() => layoutQuery.value?.page || 1),
-      itemCount: computed(() => items.value.length),
-      showingCount: computed(() => String(totalCount.value)),
+      itemCount: fetchedCount,
+      showingCount: computed(() => {
+        if (limitExceeded.value) {
+          return `${fetchedCount.value} of ${totalCount.value} ${totalCount.value === 1 ? "item" : "items"}`;
+        }
+        return `${totalCount.value} ${totalCount.value === 1 ? "item" : "items"}`;
+      }),
+      limitExceeded,
       refresh,
       change,
       onClick,

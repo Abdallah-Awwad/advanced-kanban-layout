@@ -20,6 +20,7 @@ defineProps<{
 	display: none;
 	color: var(--theme--foreground-subdued);
 	white-space: nowrap;
+	margin: 0 8px;
 }
 
 @media (min-width: 640px) {

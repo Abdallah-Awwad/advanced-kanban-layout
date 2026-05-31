@@ -31,11 +31,13 @@ const props = withDefaults(
 		groupTitle?: string | null;
 		isRelational?: boolean;
 		relatedCollection?: string | null;
+		limitExceeded?: boolean;
 	}>(),
 	{
 		groupedItems: () => [],
 		selectMode: false,
 		sortField: null,
+		limitExceeded: false,
 	},
 );
 
@@ -73,6 +75,10 @@ function handleUserClick(event: MouseEvent, userId: string) {
 		<slot v-if="error" name="error" :error="error" :reset="resetPresetAndRefresh" />
 
 		<div v-else class="kanban-board">
+			<VNotice v-if="limitExceeded" type="warning" class="limit-warning">
+				Showing {{ itemCount }} of {{ totalCount }} items. Increase the limit in layout options or apply filters to see all items.
+			</VNotice>
+
 			<VNotice v-if="groupedItems.length === 0 && !loading" type="info">
 				No groups found. Please check your "Group By" setting in the layout options.
 			</VNotice>
@@ -198,6 +204,11 @@ function handleUserClick(event: MouseEvent, userId: string) {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+}
+
+.limit-warning {
+	margin: 0.5rem 1rem;
+	flex-shrink: 0;
 }
 
 .groups-scroll-container {
